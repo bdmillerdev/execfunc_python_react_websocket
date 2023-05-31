@@ -1,0 +1,14 @@
+.homeContainer {
+  height: 100%;
+  background-color: #a0a0ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width: 480px) {
+  .homeContainer {
+    padding-top: 50px;
+    align-items: unset;
+  }
+}

@@ -1,0 +1,17 @@
+.App {
+  height: 100vh;
+  margin: 0;
+}
+/* Px437_Robotron_A7100 */
+@font-face {
+  font-family: "Robotron_A7100";
+  src: url(./fonts/Px437_Robotron_A7100.ttf) format("truetype"),
+    url(./fonts/Web437_Robotron_A7100.woff) format("woff");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Rainbow100";
+  src: url(./fonts/Px437_Rainbow100_re_80.ttf) format("truetype"),
+    url(./fonts/Web437_Rainbow100_re_80.woff) format("woff");
+}

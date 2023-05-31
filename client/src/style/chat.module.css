@@ -1,0 +1,110 @@
+.chatMainContainer {
+  display: flex;
+  height: 100%;
+  margin: 1px;
+  background-color: #a0a0ff;
+}
+
+.chatHeaderWrappeer {
+  color: #a0a0ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.chatgridColumn {
+  width: 720px;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.termPaneTop {
+  min-height: 380px;
+  height: 380px;
+  width: 720px;
+  margin-top: 42px;
+  background-color: #4040e0;
+  border-bottom: 1px solid lavender;
+  word-wrap: break-word;
+  overflow-y: auto;
+  /* hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* hide scrollbar for chrome, safari and opera */
+.termPaneTop::-webkit-scrollbar {
+  display: none;
+}
+
+.chatReturnText {
+  font-size: 14px;
+  color: #fff;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.termPaneBottom {
+  min-height: 100px;
+  width: 720px;
+  background-color: #4040e0;
+
+  /* hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* hide scrollbar for chrome, safari and opera */
+.termPaneBottom::-webkit-scrollbar {
+  display: none;
+}
+
+.messageInput {
+  font-size: 14px;
+  color: #fff;
+  background-color: #4040e0;
+  width: 99%;
+  min-height: 98px;
+  border: 0;
+}
+
+input:focus {
+  outline: none !important;
+  border-width: 0px !important;
+}
+
+textarea:focus {
+  outline: none !important;
+  border-width: 0px !important;
+}
+
+.chatTermText {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+h2 {
+  margin-top: 0px;
+  margin-bottom: 6px;
+}
+
+@media only screen and (max-width: 480px) {
+  .chatMainContainer {
+    width: 100%;
+  }
+  .chatgridColumn {
+    margin-top: 20px;
+    width: 400px;
+  }
+  .termPaneTop {
+    width: 385px;
+    margin-left: 2px;
+  }
+  .termPaneBottom {
+    width: 385px;
+    margin-left: 2px;
+  }
+}
