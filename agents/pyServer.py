@@ -3,6 +3,7 @@ import socketio
 from aiohttp import web
 from io import StringIO
 import os
+import ssl
 from convo import Converse
 from langchain.agents import Tool
 from langchain.chains import ConversationChain
@@ -13,7 +14,7 @@ from langchain.agents import initialize_agent
 from secrets_1 import OPENAI_API_KEY, GOOGLE_API_KEY, GOOGLE_CSE_ID
 
 # Prod (after Nginx revprox; and dev)
-HOST = '127.0.0.1'
+HOST = '0.0.0.0'
 PORT = 4010
 sio = socketio.AsyncServer(cors_allowed_origins="*", async_mode='aiohttp', logger=True, engineio_logger=True)
 c = Converse()
@@ -21,7 +22,10 @@ prompt = False
 
 app = web.Application()
 sio.attach(app)
-print('server')
+
+ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
+ssl_context.load_cert_chain('/etc/nginx/ssl/execfunc.com.crt', '/etc/nginx/ssl/execfunc.com.key')
+
 @sio.on('connect')
 async def connect(sid, environmet):
     print('connect to client, sid', sid)
@@ -40,4 +44,4 @@ async def handle_data(sid, data):
     print('response', response)
 
 if __name__ == '__main__':
-    web.run_app(app, host=HOST, port=PORT)
+    web.run_app(app, host=HOST, port=PORT, ssl_context=ssl_context)

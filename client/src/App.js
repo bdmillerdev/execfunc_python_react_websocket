@@ -8,22 +8,24 @@ import Select from "./pages/Select";
 import "./App.css";
 
 // *** Dev config socket1
-const ENDPOINT1 = "http://127.0.0.1:4010";
+// const ENDPOINT1 = "http://127.0.0.1:4010";
 // const ENDPOINT1 = "http://localhost:4010";
 // *** Prod config socket1
-// const ENDPOINT1 = "https://www.execfunc.com/backend"; // maybe need to add full path /ef/egents/backend
+// const ENDPOINT1 = "http://157.230.86.55:4010"; // maybe need to add full path /ef/egents/backend
+const ENDPOINT1 = "https://www.execfunc.com:4010"; 
 const socket1 = io(ENDPOINT1);
 
 // *** Dev config socket2
+// const ENDPOINT2 = "http://localhost:4010"; // port
 // const ENDPOINT2 = "http://localhost:4030"; // port
 // *** Prod config socket2
-const ENDPOINT2 = "https://www.execfunc.com/socket.io"; // maybe neef to add full path /ef/egents/backend
+// const ENDPOINT2 = "http://157.230.86.55:4010/socket.io"; // maybe neef to add full path /ef/egents/backend
+const ENDPOINT2 = "https://www.execfunc.com:4010/socket.io"; // maybe neef to add full path /ef/egents/backend
 const socket2 = io(ENDPOINT2);
 
 const foo = "foo";
 
 function App() {
-  const [username, setUsername] = useState("");
   const [header, setHeader] = useState("");
   const [sock, setSock] = useState();
   return (

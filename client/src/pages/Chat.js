@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { formatDateFromTimestamp } from "../utilities/utilities";
 import styles from "../style/chat.module.css";
 
 const Chat = ({ socket1, socket2, username, room, sock, setSock }) => {
