@@ -13,7 +13,6 @@ from langchain.utilities import GoogleSearchAPIWrapper
 from langchain.agents import initialize_agent
 from secrets_1 import OPENAI_API_KEY, GOOGLE_API_KEY, GOOGLE_CSE_ID
 
-# Prod (after Nginx revprox; and dev)
 HOST = '0.0.0.0'
 PORT = 4010
 sio = socketio.AsyncServer(cors_allowed_origins="*", async_mode='aiohttp', logger=True, engineio_logger=True)
