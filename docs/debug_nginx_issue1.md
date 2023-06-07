@@ -35,7 +35,40 @@ By splitting the task into these steps, you can systematically address the issue
  
 ### Action 
 - Remove all old configurations on the server related to the NGINX
-- Install latest version of NGINX
+    ```bash
+    # Remove all config and resources related to nginx
+    root: sudo apt purge nginx
+
+    # Remove dependencies related to old configurations   
+    root: sudo apt autoremove
+
+    # Check current used ports
+    root: sudo lsof -i -P -n | grep LISTEN
+
+    # Check PIDs for 80, 443 to disable the app services.
+    root: lsof -i :80
+    COMMAND   PID USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME
+    tcp       771 root   3u  IPv4   19373      0t0  TCP *:80 (LISTEN)
+
+    root: lsof -i :443
+    COMMAND   PID USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME
+    tcp       773 root   3u  IPv4   19373      0t0  TCP *:443 (LISTEN)
+    ```
+- Kill the current service and disable the app service
+    ```bash
+    root: kill 773 # kiill the process that is using 443 port
+    ```
+- Once confrim we are fresh to install the Nginx, then we can start the configurations for new one.
+    ```bash
+    # Update the dependencies
+    root: sudo apt update
+
+    # Upgrad the dependencies
+    root: sudo apt upgrade
+
+    # Install nginx again
+    root: sudo apt install nginx
+    ```
 - Setup hosting config on the `etc/nginx/site-enabled`
   - create the new file named `default` and copy/paste the content from `etc/nginx/site-available`
 
@@ -54,3 +87,6 @@ By splitting the task into these steps, you can systematically address the issue
 Browser Console Output: The browser console will show the expected HTTPS GET request to socket.io and the subsequent protocol switch, indicating that the WebSocket connection is working properly.
 
 >By achieving these expected results, you will have resolved the Nginx configuration issue and successfully established a functioning WebSocket service with a secure connection through SSL.
+
+### References
+- [How to check if port is in use on Linux or Unix](https://www.cyberciti.biz/faq/unix-linux-check-if-port-is-in-use-command/)
