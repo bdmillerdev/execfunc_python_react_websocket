@@ -248,6 +248,25 @@ By splitting the task into these steps, you can systematically address the issue
     # Verify status
     sudo ufw status
     ```
+- Setup PM2
+    ```
+    # Install pm2 with npm
+    npm install pm2@latest -g
+
+    # /var/www/ef/agant
+    pm2 start pyServer.py --interpreter python3
+
+    pm2 start pytServer2.py --interpreter python3
+    ```
+
+- Generating a Startup Script
+    ```bash
+    pm2 startup
+
+    # disable
+    pm2 unstartup
+    ```
+
 ### Result
 >Once the Nginx reverse proxy configuration is debugged and properly adjusted, the expected result would be:
 
@@ -264,8 +283,20 @@ Browser Console Output: The browser console will show the expected HTTPS GET req
 
 >By achieving these expected results, you will have resolved the Nginx configuration issue and successfully established a functioning WebSocket service with a secure connection through SSL.
 
+### Trivia
+- In this guidance, the backend service is not related to nginx.
+- The current websocket runs on a python aiohttp server, so it also has no relation to nginx.
+- The aforementioned nginx configuration follows a standard structure for hosting the SPA (single page application).
+- There are no configurations for the CI/CD between Github and ubuntu server
+- The hosting path for the frontend has been updated from /var/www/ef/ to /var/www/ef/build.
+- In the frontend code, the Websocket connection URL has changed from https://execfunc.com:4010/backend to https://execfunc.com:4010.
+
 ### References
+- [default nginx configuration file](https://gist.github.com/xameeramir/a5cb675fb6a6a64098365e89a239541d)
 - [How to check if port is in use on Linux or Unix](https://www.cyberciti.biz/faq/unix-linux-check-if-port-is-in-use-command/)
 - [Request Redirect for Nginx in SPAs](https://techformist.com/request-redirect-nginx-spa/)
 - [Redirect HTTP to HTTPS in Nginx](https://serversforhackers.com/c/redirect-http-to-https-nginx)
 - [Basic UFW (Uncomplicated Firewall) commands](https://serverspace.io/support/help/osnovnye-komandy-ufw/#:~:text=To%20enable%20a%20firewall%20application,%22sudo%20ufw%20app%20list%22.)
+- [PM2 Process Management Quick Start](https://pm2.keymetrics.io/docs/usage/quick-start/)
+- [Automate Your Python Script with Process Manager 2 (PM2)](https://towardsdatascience.com/automate-your-python-script-with-pm2-463238ea0b65)
+- [STARTUP SCRIPT](https://pm2.keymetrics.io/docs/usage/startup/)
